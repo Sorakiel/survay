@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { useState } from 'react'
+import styles from './App.module.css'
+import { Content } from './Content'
+export function App() {
+	const [isVisible, setIsVisible] = useState(false)
+	const toggleVisible = () => {
+		setIsVisible(!isVisible)
+	}
+	return (
+		<>
+			<div className={styles.header}>
+				<img src='/images/ITC_LOGO.png' className={styles.logo} width={40} />
+				<div className={styles.auth}>
+					<button className={styles.authButton}>Войти</button>
+					<button onClick={toggleVisible} className={styles.editButton}>
+						✎
+					</button>
+				</div>
+			</div>
+			<Content isVisible={isVisible} setIsVisible={setIsVisible} />
+		</>
+	)
 }
-
-export default App;
