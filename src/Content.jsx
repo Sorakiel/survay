@@ -1,12 +1,40 @@
+import { useState } from 'react'
 import styles from './App.module.css'
+import TextList from './TextList'
 export function Content({ isVisible, setIsVisible }) {
+	const [texts, setTexts] = useState([
+		{ content: 'Тут будет ваш тайтл' },
+		{ content: 'Информация о проекте 1' },
+		{ content: 'Информация о проекте 2' },
+		{ content: 'Информация о проекте 3' },
+	])
+	const [textContent, setTextContent] = (useState = '')
+	const addText = event => {
+		setTexts([
+			...texts,
+			{
+				content: textContent,
+			},
+		])
+		setTextContent('')
+	}
 	return (
 		<>
 			{/*Заголовок */}
 			<hr></hr>
-			<div className={styles.text} id='header'>
-				lorem
+			<div className={styles.s} id='header'>
+				<div className='input-field'>
+					<input
+						type='text'
+						value={textContent}
+						onChange={event => setTextContent(event.target.value)}
+					/>
+				</div>
+				<div className='input-confirm'>
+					<button onClick={addText()}></button>
+				</div>
 			</div>
+			<TextList texts={texts} />
 			<button className={isVisible ? 'subEditButton' : 'vanish editButton'}>
 				⎙
 			</button>
@@ -34,17 +62,17 @@ export function Content({ isVisible, setIsVisible }) {
 			</button>
 			<hr></hr>
 			{/*Поля с текстами*/}
-			<div className={styles.text}>Информация о проекте 1</div>
+			<div className={styles.text}></div>
 			<button className={isVisible ? 'subEditButton' : 'vanish editButton'}>
 				⎙
 			</button>
 			<hr></hr>
-			<div className={styles.text}>Информация о проекте 2</div>
+			<div className={styles.text}></div>
 			<button className={isVisible ? 'subEditButton' : 'vanish subEditButton'}>
 				⎙
 			</button>
 			<hr></hr>
-			<div className={styles.text}>Информация о проекте 3</div>
+			<div className={styles.text}></div>
 			<button className={isVisible ? 'subEditButton' : 'vanish subEditButton'}>
 				⎙
 			</button>
